@@ -28,6 +28,13 @@ public class SecurityConfig {
                         // Public APIs
                         .requestMatchers("/auth/**").permitAll()
 
+                        .requestMatchers(
+        "/swagger-ui.html",
+        "/swagger-ui/**",
+        "/api-docs/**",
+        "/v3/api-docs/**"
+).permitAll()
+
                         // Anyone logged in can VIEW products
                         .requestMatchers(HttpMethod.GET, "/products/**").authenticated()
 
