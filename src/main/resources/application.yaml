@@ -3,9 +3,9 @@ spring:
     name: orderservice
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/ecommerce_db
-    username: ecommerce_user
-    password: ecommerce_pass
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/ecommerce_db}
+    username: ${SPRING_DATASOURCE_USERNAME:ecommerce_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:ecommerce_pass}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -22,14 +22,18 @@ spring:
 
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${SPRING_DATA_REDIS_HOST:localhost}
+      port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: ${SPRING_DATA_REDIS_PASSWORD:}
       timeout: 2000ms
+
+server:
+  port: ${PORT:8080}
 
 app:
   jwt:
-    secret: "3cfa76ef14937c1c0ea519f8fc057a80fcd04a7e5739c3e01d31e7f79b3f7da"
-    expiration: 86400000
+    secret: ${JWT_SECRET:3cfa76ef14937c1c0ea519f8fc057a80fcd04a7e5739c3e01d31e7f79b3f7da}
+    expiration: ${JWT_EXPIRATION:86400000}
 
 springdoc:
   api-docs:
